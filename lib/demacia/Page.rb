@@ -7,10 +7,10 @@ module Demacia
 		# Params:
 		# +name+:: The page's name
 		# +current+:: A boolean that tells us if this is the currently used page
-		def initialize(name, current)
+		def initialize(name, current, talents)
 			@name = name
 			@current = current
-			talents = Array.new
+			@talents = talents
 		end
 	end
 end
