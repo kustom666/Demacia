@@ -62,5 +62,10 @@ module Demacia
 				@runes << tome_buffer
 			end
 		end
+
+		def get_last_ten_games(key)
+			answer_string = open("http://prod.api.pvp.net/api/lol/" + @region +"/v1.1/game/by-summoner"+@id.to_s+"/recent?api_key="+key).read
+			parsed_answer = JSON.parse(answer_string)
+		end
 	end
 end
