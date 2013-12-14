@@ -13,5 +13,11 @@ module Demacia
 			@name = name
 			@rank = rank
 		end
+
+		def to_s
+			return_string = "\nTalent id: \t"+@id.to_s + 
+							"\nTalent name:\t"+@name + 
+							"\nTalent rank:\t"+@rank.to_s
+		end
 	end
 end
