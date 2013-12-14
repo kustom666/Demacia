@@ -5,6 +5,7 @@ require 'Page'
 require 'Talent'
 require 'Rune'
 require 'Tome'
+require 'Game'
 
 module Demacia
 	class Summoner
@@ -72,9 +73,15 @@ module Demacia
 			end
 		end
 
-		def get_last_ten_games(key)
-			answer_string = open("http://prod.api.pvp.net/api/lol/" + @region +"/v1.1/game/by-summoner"+@id.to_s+"/recent?api_key="+key).read
+		def last_ten_games(key)
+			answer_string = open("http://prod.api.pvp.net/api/lol/" + @region +"/v1.1/game/by-summoner/"+@id.to_s+"/recent?api_key="+key).read
 			parsed_answer = JSON.parse(answer_string)
+			games = Array.new
+			parsed_answer["games"].each do |game|
+				game_buffer = Game.new(game["gameId"],game["championId"],game["createDate"], game["fellowPlayers"], game["gameMode"], game["gameType"], game["invalid"], game["level"], game["mapId"], game["spell1"], game["spell2"], game["statistics"], game["subType"], game["teamId"])
+				games << game_buffer
+			end
+			games
 		end
 
 		# Prints the summoner info to the console in a friendly way

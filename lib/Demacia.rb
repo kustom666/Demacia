@@ -33,5 +33,12 @@ module Demacia
 		def summoner_by_id(id)
 			summoner = Demacia::Summoner.new(@entry_point+"summoner/"+id+@api_suffix, @region)
 		end
+
+		# Gets the list of all league of legends champions
+		# Params:
+		# +id+:: The summoner id from riot's api
+		def champions
+			
+		end
 	end
 end
